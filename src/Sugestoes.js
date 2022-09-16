@@ -15,6 +15,14 @@ function Sugestao(prop) {
 }
 
 export default function Sugestoes() {
+	const sugestaoSeguir = [
+		{ imagem: 'assets/img/bad.vibes.memes.svg', usuario: 'bad.vibes.memes', segue: 'sim' },
+		{ imagem: 'assets/img/chibirdart.svg', usuario: 'chibirdart', segue: 'sim' },
+		{ imagem: 'assets/img/razoesparaacreditar.svg', usuario: 'razoesparaacreditar', segue: 'nao' },
+		{ imagem: 'assets/img/adorable_animals.svg', usuario: 'adorable_animals', segue: 'sim' },
+		{ imagem: 'assets/img/smallcutecats.svg', usuario: 'smallcutecats', segue: 'sim' },
+	];
+
 	return (
 		<div class="sugestoes">
 			<div class="titulo">
@@ -22,15 +30,9 @@ export default function Sugestoes() {
 				<div>Ver tudo</div>
 			</div>
 
-			<Sugestao imagem="assets/img/bad.vibes.memes.svg" usuario="bad.vibes.memes" segue="sim" />
-			<Sugestao imagem="assets/img/chibirdart.svg" usuario="chibirdart" segue="sim" />
-			<Sugestao
-				imagem="assets/img/razoesparaacreditar.svg"
-				usuario="razoesparaacreditar"
-				segue="nao"
-			/>
-			<Sugestao imagem="assets/img/adorable_animals.svg" usuario="adorable_animals" segue="sim" />
-			<Sugestao imagem="assets/img/smallcutecats.svg" usuario="smallcutecats" segue="sim" />
+			{sugestaoSeguir.map((s) => (
+				<Sugestao imagem={s.imagem} usuario={s.usuario} segue={s.segue} />
+			))}
 		</div>
 	);
 }
