@@ -1,10 +1,25 @@
+import React, { useState } from 'react';
+
 function Post(prop) {
+	const [curtida, setCurtida] = useState(false);
+	const [salvo, setSalvo] = useState(false);
+	const [numCurtidas, setNumCurtidas] = useState(prop.numCurtidas);
 	function curtir() {
-		alert('curtiu');
+		if (curtida === true) {
+			setCurtida(false);
+			setNumCurtidas(numCurtidas - 1);
+		} else if (curtida === false) {
+			setCurtida(true);
+			setNumCurtidas(numCurtidas + 1);
+		}
 	}
 
 	function salvar() {
-		alert('salvou');
+		if (salvo === true) {
+			setSalvo(false);
+		} else if (salvo === false) {
+			setSalvo(true);
+		}
 	}
 
 	return (
@@ -26,12 +41,20 @@ function Post(prop) {
 			<div class="fundo">
 				<div class="acoes">
 					<div>
-						<ion-icon name="heart-outline" onClick={curtir}></ion-icon>
+						{curtida === false ? (
+							<ion-icon name="heart-outline" onClick={curtir}></ion-icon>
+						) : (
+							<ion-icon name="heart" onClick={curtir} class="curtido"></ion-icon>
+						)}
 						<ion-icon name="chatbubble-outline"></ion-icon>
 						<ion-icon name="paper-plane-outline"></ion-icon>
 					</div>
 					<div>
-						<ion-icon name="bookmark-outline" onClick={salvar}></ion-icon>
+						{salvo === false ? (
+							<ion-icon name="bookmark-outline" onClick={salvar}></ion-icon>
+						) : (
+							<ion-icon name="bookmark" onClick={salvar} class="Salvo"></ion-icon>
+						)}
 					</div>
 				</div>
 
@@ -39,7 +62,7 @@ function Post(prop) {
 					<img src={prop.imagemFundo} alt={prop.usuarioCurtida} />
 					<div class="texto">
 						Curtido por <strong>{prop.usuarioCurtida}</strong> e outras{' '}
-						<strong>{prop.numCurtidas.toLocaleString()} pessoas</strong>
+						<strong>{numCurtidas.toLocaleString()} pessoas</strong>
 					</div>
 				</div>
 			</div>
